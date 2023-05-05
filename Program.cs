@@ -1,3 +1,6 @@
+using DevNetCore.Interfaces;
+using DevNetCore.Services;
+
 namespace DevNetCore
 {
     public class Program
@@ -8,6 +11,7 @@ namespace DevNetCore
 
             // Add services to the container.
             builder.Services.AddControllersWithViews().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+            builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
             var app = builder.Build();
 

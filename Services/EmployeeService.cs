@@ -1,10 +1,10 @@
-﻿using DevNetCore.Models;
-
-namespace DevNetCore.Data
+﻿namespace DevNetCore.Services
 {
-    public static class MockData
+    using DevNetCore.Interfaces;
+    using DevNetCore.Models;
+    public class EmployeeService : IEmployeeService
     {
-        public static List<Employee> Employees()
+        public List<Employee> Employees()
         {
             return new List<Employee>()
             {
