@@ -2,14 +2,18 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Employee Details</h1>
+
+<br />
 
 @(
 Html.DevExtreme().DataGrid<Employee>()
         .ID("gridContainer")
+        .AllowColumnReordering(true)
+        .RowAlternationEnabled(true)
+        .FilterRow(filterRow => filterRow
+            .Visible(true)
+            .ApplyFilter(GridApplyFilterMode.Auto))
         .ShowBorders(true)
         .HoverStateEnabled(true)
         .Paging(paging => paging.PageSize(10))
@@ -28,9 +32,13 @@ Html.DevExtreme().DataGrid<Employee>()
         .RemoteOperations(true)
         .Columns(columns =>
         {
-            columns.AddFor(_ => _.Id);
-            columns.AddFor(_ => _.Name);
-            columns.AddFor(_ => _.Age);
+            columns.AddFor(_ => _.Id)
+                .Alignment(HorizontalAlignment.Center);
+            columns.AddFor(_ => _.Name)
+                .Alignment(HorizontalAlignment.Center);
+            columns.AddFor(_ => _.Age)
+                .Alignment(HorizontalAlignment.Center);
+
         })
 )
 
