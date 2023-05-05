@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@(
+Html.DevExtreme().DataGrid<Employee>()
+        .ID("gridContainer")
+        .ShowBorders(true)
+        .HoverStateEnabled(true)
+        .Paging(paging => paging.PageSize(10))
+        .Pager(pager =>
+        {
+            pager.Visible(true);
+            pager.DisplayMode(GridPagerDisplayMode.Full);
+            pager.ShowInfo(true);
+            pager.ShowNavigationButtons(true);
+        })
+        .DataSource(_ => _.Mvc()
+        .Controller("Home")
+        .LoadAction("Get")
+        .Key("Id")
+        )
+        .RemoteOperations(true)
+        .Columns(columns =>
+        {
+            columns.AddFor(_ => _.Id);
+            columns.AddFor(_ => _.Name);
+            columns.AddFor(_ => _.Age);
+        })
+)
+
+
+
